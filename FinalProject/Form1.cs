@@ -46,8 +46,14 @@ namespace FinalProject {
          * Loads all fields with apprpriate info
          **/
         private void Form1_Load(object sender, EventArgs e) {
+
+
             // TODO: This line of code loads data into the 'cprojectDataSet.players' table. You can move, or remove it, as needed.
-           
+
+            clearPlayerFields();
+            clearTeamFields();
+
+
             SoccerPlayerDB playersDB = new SoccerPlayerDB();
             SoccerTeamDB teamsDB = new SoccerTeamDB();
             try {
@@ -61,19 +67,7 @@ namespace FinalProject {
 
                showAllPlayers();
 
-                // queries players table and updates dataGridViewPlayers
-                DataTable teams = teamsDB.getAll();
-                dataGridViewTeams.DataSource = teams;
-
-                ////// trade tab /////
-
-                //populates  both comboboxs with teams from teams table
-                foreach (DataRow row in teams.Rows)
-                {
-                    cbTeam1.Items.Add(row["tname"].ToString());
-                    cbTeam2.Items.Add(row["tname"].ToString());
-                }
-                 
+               showAllTeams();                
 
             /////// standings tab /////////
 
@@ -189,10 +183,354 @@ namespace FinalProject {
             }
         }
 
+        private void showAllTeams()
+        {
+            SoccerTeamDB teamsDB = new SoccerTeamDB();
+            DataTable teams = teamsDB.getAll();
+           
+            // Update Grid Views
+            dataGridViewTeams.DataSource = teams;
+
+            // Update ComboBox
+            cbTeam1.Items.Clear();
+            cbTeam2.Items.Clear();
+            cbPlayerTeams.Items.Clear();
+            foreach (DataRow row in teams.Rows)
+            {
+                cbTeam1.Items.Add(row["tname"].ToString());
+                cbTeam2.Items.Add(row["tname"].ToString());
+                cbPlayerTeams.Items.Add(row["tname"].ToString());
+            }
+        }
+
         private void btnAddTeam_Click(object sender, EventArgs e)
         {
-            AddTeam form = new AddTeam();
-            form.Show();
+            // Connect to database
+            SoccerTeamDB db = new SoccerTeamDB();
+
+            // Get team details
+            String name = txtName.Text;
+
+            // Verify if team already exist
+            if (db.getById(name) == null)
+            {
+                String division = txtDivision.Text;
+                SoccerTeam team = new SoccerTeam(name, division);
+
+                try
+                {
+                    int result = db.addTeam(team); // Save team
+
+                    if (result > 0)
+                    {
+                        MessageBox.Show(name + " was added successfully!", "Add Team", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        clearTeamFields();
+                        showAllTeams();
+                    }
+                    else
+                    {
+                        MessageBox.Show(name + " cannot be added!", "Add Team Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error: " + ex.Message);
+                }
+            }
+            else // If team already exist
+            {
+                MessageBox.Show(name + " already exist in database!", "Add Team Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnClearTeam_Click(object sender, EventArgs e)
+        {
+            clearTeamFields();
+        }
+
+        // Clear all Team fields
+        private void clearTeamFields()
+        {
+            txtName.Text = "";
+            txtDivision.Text = "";
+        }
+
+        // Clear all `Player fields
+        private void clearPlayerFields()
+        {
+            txtFName.Text = "";
+            txtLName.Text = "";
+            txtNumber.Text = "";
+            txtAge.Text = "";
+            txtPosition.Text = "";
+            txtHeight.Text = "";
+            txtWeight.Text = "";
+            cbPlayerTeams.SelectedIndex = -1;
+            lblPlayerId.Text = "";
+        }
+
+        private void btnUpdateTeam_Click(object sender, EventArgs e)
+        {
+            // Connect to database
+            SoccerTeamDB db = new SoccerTeamDB();
+
+            // Get team details
+            String name = txtName.Text;
+
+            // Verify if team exist
+            if (db.getById(name) != null)
+            {
+                String division = txtDivision.Text;
+                SoccerTeam team = new SoccerTeam(name, division);
+
+                if (!cbDeleteTeam.Checked) // If user want to update the team
+                {
+                    try
+                    {
+                        int result = db.updateTeam(team); // Save team
+
+                        if (result > 0)
+                        {
+                            MessageBox.Show(name + " was successfully updated!", "Update Team", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            clearTeamFields();
+                            showAllTeams();
+                        }
+                        else
+                        {
+                            MessageBox.Show(name + " cannot be updated!", "Update Team Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error: " + ex.Message);
+                    }
+                }
+                else // User wants to delete the team
+                {
+                    DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete " + name, "Delete Team", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                    if (dialogResult == DialogResult.No) // Do not delete!
+                    {
+                        cbDeleteTeam.Checked = false;
+                    }
+                    else
+                    {
+                        try
+                        {
+                            int result = db.deleteTeam(team); // Save team
+
+                            if (result > 0)
+                            {
+                                MessageBox.Show(name + " successfully deleted!", "Delete Team", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                cbDeleteTeam.Checked = false;
+                                clearTeamFields();
+                                showAllTeams();
+                            }
+                            else
+                            {
+                                MessageBox.Show(name + " cannot be deleted!", "Delete Team Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("Error: " + ex.Message);
+                        }
+                    }
+                }
+
+            }
+            else // If team doesn't exist
+            {
+                MessageBox.Show("Please, select team from Grid View", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
+        private void dataGridViewTeams_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // Get the index of the cell
+            int rowIndex = e.RowIndex;
+
+            // If user do not click on header
+            if (rowIndex != -1)
+            {
+                DataGridViewRow row = dataGridViewTeams.Rows[rowIndex];
+
+                // Update text box
+                txtName.Text = row.Cells[0].Value.ToString();
+                txtDivision.Text = row.Cells[2].Value.ToString();
+            }
+        }
+
+        private void txtName_Validating(object sender, CancelEventArgs e)
+        {
+            string errorMsg;
+
+            if (string.IsNullOrWhiteSpace(txtName.Text))
+            {
+                errorMsg = "Team name is required";
+                errorTeamName.SetError(txtName, errorMsg);
+                e.Cancel = true;
+            }
+            else // Remove error provider
+            {
+                errorTeamName.Clear();
+            }
+        }
+
+        private void dataGridViewPlayers_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // Get the index of the cell
+            int rowIndex = e.RowIndex;
+
+            // If user do not click on header
+            if (rowIndex != -1)
+            {
+                DataGridViewRow row = dataGridViewPlayers.Rows[rowIndex];
+
+                // Update text box
+                lblPlayerId.Text = row.Cells[0].Value.ToString();
+                txtFName.Text = row.Cells[1].Value.ToString();
+                txtLName.Text = row.Cells[2].Value.ToString();
+                txtNumber.Text = row.Cells[3].Value.ToString();
+                txtAge.Text = row.Cells[4].Value.ToString();
+                txtPosition.Text = row.Cells[5].Value.ToString();
+                txtHeight.Text = row.Cells[6].Value.ToString();
+                txtWeight.Text = row.Cells[7].Value.ToString();
+                cbPlayerTeams.Text = row.Cells[8].Value.ToString();
+            }
+        }
+
+        private void btnAddPlayer_Click(object sender, EventArgs e)
+        {
+            // Connect to database
+            SoccerPlayerDB db = new SoccerPlayerDB();
+
+            // Create player
+            SoccerPlayer player = new SoccerPlayer();
+
+            player.FirstName = txtFName.Text;
+            player.LastName = txtLName.Text;
+            player.Number = Convert.ToInt32(txtNumber.Text);
+            player.Age = Convert.ToInt32(txtAge.Text);
+            player.Position = txtPosition.Text;
+            player.Height = Convert.ToInt32(txtHeight.Text);
+            player.Weight = Convert.ToInt32(txtWeight.Text);
+            player.Team = cbPlayerTeams.Text;
+
+            // Verify if team already exist
+            if (db.getPlayerId(player) == 0)
+            {
+                try
+                {
+                    int result = db.addPlayer(player); // Save player
+
+                    if (result > 0)
+                    {
+                        MessageBox.Show(player.FirstName + " " + player.LastName + " was added successfully!", "Add Player", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        clearPlayerFields();
+                        showAllPlayers();
+                    }
+                    else
+                    {
+                        MessageBox.Show(player.FirstName + " " + player.LastName + " cannot be added!", "Add Player Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error: " + ex.Message);
+                }
+            }
+            else // If team player exist
+            {
+                MessageBox.Show(player.FirstName + " " + player.LastName + " already exist in database!", "Add Player Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnClearPlayer_Click(object sender, EventArgs e)
+        {
+            clearPlayerFields();
+        }
+
+        private void btnUpdatePlayer_Click(object sender, EventArgs e)
+        {
+            // Connect to database
+            SoccerPlayerDB db = new SoccerPlayerDB();
+            SoccerPlayer player = new SoccerPlayer();
+
+            // Verify if player exist
+            if (lblPlayerId.Text != "")
+            {
+                // Create player
+                player.FirstName = txtFName.Text;
+                player.LastName = txtLName.Text;
+                player.Number = Convert.ToInt32(txtNumber.Text);
+                player.Age = Convert.ToInt32(txtAge.Text);
+                player.Position = txtPosition.Text;
+                player.Height = Convert.ToInt32(txtHeight.Text);
+                player.Weight = Convert.ToInt32(txtWeight.Text);
+                player.Team = cbPlayerTeams.Text;
+
+                player.Id = Convert.ToInt32(lblPlayerId.Text);
+
+                if (!cbDeletePlayer.Checked) // If user want to update the Player
+                {
+                    try
+                    {
+                        int result = db.updatePlayer(player); // Save team
+
+                        if (result > 0)
+                        {
+                            MessageBox.Show(player.FirstName + " " + player.LastName + "  was successfully updated!", "Update Player", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            clearPlayerFields();
+                            showAllPlayers();
+                        }
+                        else
+                        {
+                            MessageBox.Show(player.FirstName + " " + player.LastName + " cannot be updated!", "Update Player Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error: " + ex.Message);
+                    }
+                }
+                else // User wants to delete the team
+                {
+                    DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete " + player.FirstName + " " + player.LastName, "Delete Player", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                    if (dialogResult == DialogResult.No) // Do not delete!
+                    {
+                        cbDeletePlayer.Checked = false;
+                    }
+                    else
+                    {
+                        try
+                        {
+                            int result = db.deletePlayer(player); // Save team
+
+                            if (result > 0)
+                            {
+                                MessageBox.Show(player.FirstName + " " + player.LastName + " was successfully deleted!", "Delete Player", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                cbDeletePlayer.Checked = false;
+                                clearPlayerFields();
+                                showAllPlayers();
+                            }
+                            else
+                            {
+                                MessageBox.Show(player.FirstName + " " + player.LastName + " cannot be deleted!", "Delete Player Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("Error: " + ex.Message);
+                        }
+                    }
+                }
+
+            } 
+            else
+            {
+                MessageBox.Show("Please, select player from Grid View", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

@@ -49,12 +49,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddTeam.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AddTeam.Designer.cs">
-      <DependentUpon>AddTeam.cs</DependentUpon>
-    </Compile>
     <Compile Include="cprojectDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -66,16 +60,13 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="model\ConnectDB.cs" />
+    <Compile Include="controller\ConnectDB.cs" />
     <Compile Include="model\SoccerPlayer.cs" />
-    <Compile Include="model\SoccerPlayerDB.cs" />
+    <Compile Include="controller\SoccerPlayerDB.cs" />
     <Compile Include="model\SoccerTeam.cs" />
-    <Compile Include="model\SoccerTeamDB.cs" />
+    <Compile Include="controller\SoccerTeamDB.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="AddTeam.resx">
-      <DependentUpon>AddTeam.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>

@@ -8,11 +8,14 @@ namespace FinalProject.model
 {
     class SoccerPlayer
     {
-        public String FirstName { get; set; }
-        public String LastName { get; set; }
+        public int Id { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
         public int Age { get; set; }
-        public String Position { get; set; }
+        public int Number { get; set; }
+        public string Position { get; set; }
         public int Height { get; set; }
         public int Weight { get; set; }
+        public string Team { get; set; }
     }
 }
