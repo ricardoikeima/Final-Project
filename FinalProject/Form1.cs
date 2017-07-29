@@ -304,6 +304,7 @@ namespace FinalProject {
             txtName.Text = "";
             txtDivision.Text = "";
             lblTeamId.Text = "";
+            cbDeleteTeam.Checked = false;
         }
 
         // Clear all Team fields (View options)
@@ -327,6 +328,7 @@ namespace FinalProject {
             numWeight.Text = "";
             cbPlayerTeams.SelectedIndex = -1;
             lblPlayerId.Text = "";
+            cbDeletePlayer.Checked = false;
         }
 
         // Clear all `Player fields (View options)
@@ -1203,6 +1205,30 @@ namespace FinalProject {
             else // Remove error provider
             {
                 errorFilterNumberTo.Clear();
+            }
+        }
+
+        // Change update button text when delete checkbox is checked
+        private void cbDeletePlayer_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbDeletePlayer.Checked)
+            {
+                btnUpdatePlayer.Text = "Delete";
+            } else {
+                btnUpdatePlayer.Text = "Update";
+            }
+        }
+
+        // Change update button text when delete checkbox is checked
+        private void cbDeleteTeam_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbDeleteTeam.Checked)
+            {
+                btnUpdateTeam.Text = "Delete";
+            }
+            else
+            {
+                btnUpdateTeam.Text = "Update";
             }
         }
 

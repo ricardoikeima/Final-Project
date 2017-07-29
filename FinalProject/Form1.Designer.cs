@@ -187,8 +187,8 @@
             this.Players.Controls.Add(this.rbEditPlayer);
             this.Players.Controls.Add(this.rbViewPlayer);
             this.Players.Controls.Add(this.dataGridViewPlayers);
-            this.Players.Controls.Add(this.gbViewPlayer);
             this.Players.Controls.Add(this.gbEditPlayer);
+            this.Players.Controls.Add(this.gbViewPlayer);
             this.Players.Location = new System.Drawing.Point(4, 22);
             this.Players.Margin = new System.Windows.Forms.Padding(1);
             this.Players.Name = "Players";
@@ -676,6 +676,7 @@
             this.cbDeletePlayer.TabIndex = 13;
             this.cbDeletePlayer.Text = "Delete record";
             this.cbDeletePlayer.UseVisualStyleBackColor = true;
+            this.cbDeletePlayer.CheckedChanged += new System.EventHandler(this.cbDeletePlayer_CheckedChanged);
             // 
             // btnUpdatePlayer
             // 
@@ -737,8 +738,8 @@
             this.Teams.Controls.Add(this.rbEditTeam);
             this.Teams.Controls.Add(this.rbViewTeam);
             this.Teams.Controls.Add(this.dataGridViewTeams);
-            this.Teams.Controls.Add(this.gbViewTeam);
             this.Teams.Controls.Add(this.gbEditTeam);
+            this.Teams.Controls.Add(this.gbViewTeam);
             this.Teams.Location = new System.Drawing.Point(4, 22);
             this.Teams.Margin = new System.Windows.Forms.Padding(1);
             this.Teams.Name = "Teams";
@@ -801,7 +802,7 @@
             this.gbViewTeam.Size = new System.Drawing.Size(316, 185);
             this.gbViewTeam.TabIndex = 37;
             this.gbViewTeam.TabStop = false;
-            this.gbViewTeam.Text = "View";
+            this.gbViewTeam.Text = "View Team";
             // 
             // txtRankingTo
             // 
@@ -915,7 +916,7 @@
             this.gbEditTeam.Size = new System.Drawing.Size(316, 185);
             this.gbEditTeam.TabIndex = 38;
             this.gbEditTeam.TabStop = false;
-            this.gbEditTeam.Text = "Edit";
+            this.gbEditTeam.Text = "Edit Team";
             // 
             // txtDivision
             // 
@@ -979,6 +980,7 @@
             this.cbDeleteTeam.TabIndex = 3;
             this.cbDeleteTeam.Text = "Delete record";
             this.cbDeleteTeam.UseVisualStyleBackColor = true;
+            this.cbDeleteTeam.CheckedChanged += new System.EventHandler(this.cbDeleteTeam_CheckedChanged);
             // 
             // btnClearTeams
             // 
