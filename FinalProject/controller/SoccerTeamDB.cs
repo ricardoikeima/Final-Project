@@ -29,10 +29,10 @@ namespace FinalProject.model
         }
 
         // Update a team
-        public int updateTeam(SoccerTeam team)
+        public int updateTeam(SoccerTeam team, string id)
         {
             // Create command
-            string command = string.Format("UPDATE {0} SET ranking = {1}, division = '{2}' WHERE tname = '{3}'", table, team.Ranking, team.Division, team.Name);
+            string command = string.Format("UPDATE {0} SET tname = '{1}', ranking = {2}, division = '{3}' WHERE tname = '{4}'", table, team.Name, team.Ranking, team.Division, team.Name, id);
 
             // Return int
             return db.executeNonQuery(command);
