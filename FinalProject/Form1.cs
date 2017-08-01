@@ -11,15 +11,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace FinalProject {
-    public partial class Form1 : Form {
+namespace FinalProject
+{
+    public partial class Form1 : Form
+    {
 
         DataTable teams;
         DataTable players;
 
-        public Form1() {
+        public Form1()
+        {
             InitializeComponent();
-            
+
         }
 
         /**
@@ -49,7 +52,8 @@ namespace FinalProject {
         /**
          * Loads all fields with apprpriate info
          **/
-        private void Form1_Load(object sender, EventArgs e) {
+        private void Form1_Load(object sender, EventArgs e)
+        {
 
 
             // TODO: This line of code loads data into the 'cprojectDataSet.players' table. You can move, or remove it, as needed.
@@ -66,20 +70,25 @@ namespace FinalProject {
 
             SoccerPlayerDB playersDB = new SoccerPlayerDB();
             SoccerTeamDB teamsDB = new SoccerTeamDB();
-            try {
+            try
+            {
 
-               showAllPlayers();
+                showAllPlayers();
 
-               showAllTeams();                
+                showAllTeams();
 
-            /////// standings tab /////////
+                /////// standings tab /////////
 
-            // queries players table and updates dataGridViewPlayers
-            dataGridViewStandings.DataSource = teamsDB.getTeamsOrderedByRank();
+                // queries players table and updates dataGridViewPlayers
+                dataGridViewStandings.DataSource = teamsDB.getTeamsOrderedByRank();
 
-            } catch (SqlException sql) {
+            }
+            catch (SqlException sql)
+            {
                 MessageBox.Show("issue connection to the db " + sql.Errors);
-            } catch (Exception ex) {
+            }
+            catch (Exception ex)
+            {
                 MessageBox.Show("some other error " + ex.Message);
             }
 
@@ -90,45 +99,61 @@ namespace FinalProject {
          * 
          * TODO: check that the same team isnt selected in both boxes
          **/
-        private void btn_loadTrade_Click(object sender, EventArgs e) {
+        private void btn_loadTrade_Click(object sender, EventArgs e)
+        {
 
             // clear lists before loading new elements
             lbTeam1.Items.Clear();
             lbTeam2.Items.Clear();
 
-            try {
+            try
+            {
                 SoccerPlayerDB playersDB = new SoccerPlayerDB();
 
                 //populates players from the team selected from the combo box
                 String t1 = cbTeam1.Text;
                 String t2 = cbTeam2.Text;
 
-                //populates lb1 with players from the selected team in cb2
-                DataTable team1 = playersDB.getPlayersFromTeam(t1);
-                
-                foreach (DataRow row in team1.Rows)
+                if (t1 != t2)
                 {
-                    lbTeam1.Items.Add(row["fname"].ToString() + " " + row["lname"].ToString());
+                    //populates lb1 with players from the selected team in cb2
+                    DataTable team1 = playersDB.getPlayersFromTeam(t1);
+
+                    foreach (DataRow row in team1.Rows)
+                    {
+                        lbTeam1.Items.Add(row["fname"].ToString() + " " + row["lname"].ToString());
+
+                        //lbTeam1.Items.AddRange(new object[] { row["id"].ToString(), row["fname"].ToString() + " " + row["lname"].ToString() });
+                    }
+
+                    //populates listbox 2 with the players form the selected team in cb2
+                    DataTable team2 = playersDB.getPlayersFromTeam(t2);
+
+                    foreach (DataRow row in team2.Rows)
+                    {
+                        lbTeam2.Items.Add(row["fname"].ToString() + " " + row["lname"].ToString());
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Please select different teams");
                 }
 
-                //populates listbox 2 with the players form the selected team in cb2
-                DataTable team2 = playersDB.getPlayersFromTeam(t2);
-
-                foreach (DataRow row in team2.Rows)
-                {
-                    lbTeam2.Items.Add(row["fname"].ToString() + " " + row["lname"].ToString());
-                }
-
-            } catch (SqlException sql) {
+            }
+            catch (SqlException sql)
+            {
                 MessageBox.Show("issue connection to the db " + sql.Errors);
-            } catch (Exception ex) {
+            }
+            catch (Exception ex)
+            {
                 MessageBox.Show("some other error " + ex.Message);
             }
 
         }
 
         // Filter player
-        private void btn_filter_Click(object sender, EventArgs e) {
+        private void btn_filter_Click(object sender, EventArgs e)
+        {
             DataView view = new DataView(players);
 
             string filter = "";
@@ -235,7 +260,7 @@ namespace FinalProject {
         {
             SoccerTeamDB teamsDB = new SoccerTeamDB();
             teams = teamsDB.getAll();
-           
+
             // Update Grid Views
             dataGridViewTeams.DataSource = teams;
 
@@ -356,7 +381,7 @@ namespace FinalProject {
             // Get team details
             string name = txtName.Text;
             string id = lblTeamId.Text;
-            
+
             // Verify if team exist
             if (db.getById(name) != null)
             {
@@ -609,7 +634,7 @@ namespace FinalProject {
                     }
                 }
 
-            } 
+            }
             else
             {
                 MessageBox.Show("Please, select player from Grid View", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -704,7 +729,7 @@ namespace FinalProject {
             // If rank to is not empty
             if (txtRankingTo.Text != "")
             {
-                
+
                 // Try to convert into numbers              
                 if (!int.TryParse(txtRankingTo.Text, out rankTo)) // invalid input (Not a number)
                 {
@@ -712,9 +737,9 @@ namespace FinalProject {
                     errorFilterRankingTo.SetError(txtRankingTo, errorMsg);
                     e.Cancel = true;
                 }
-                else 
+                else
                 {
-                    
+
 
                     if (txtRankingFrom.Text != "") // Rank to is greater than rank from
                     {
@@ -730,7 +755,7 @@ namespace FinalProject {
                         {
                             errorFilterRankingTo.Clear();
                         }
-                    } 
+                    }
                     else // Remove error provider
                     {
                         errorFilterRankingTo.Clear();
@@ -775,7 +800,7 @@ namespace FinalProject {
                         {
                             errorFilterRankingFrom.Clear();
                         }
-                        
+
                     }
                     else // Remove error provider
                     {
@@ -817,7 +842,7 @@ namespace FinalProject {
 
         private void btnClearPlayerFilter_Click(object sender, EventArgs e)
         {
-            
+
             errorFilterAgeFrom.Clear();
             errorFilterAgeTo.Clear();
             errorFilterHeightFrom.Clear();
@@ -1214,7 +1239,9 @@ namespace FinalProject {
             if (cbDeletePlayer.Checked)
             {
                 btnUpdatePlayer.Text = "Delete";
-            } else {
+            }
+            else
+            {
                 btnUpdatePlayer.Text = "Update";
             }
         }
@@ -1232,5 +1259,70 @@ namespace FinalProject {
             }
         }
 
+        //remove selected play form lbteam1 and add it to lbteam2
+        private void btn_tradeRight_Click(object sender, EventArgs e)
+        {
+            string sp1 = lbTeam1.SelectedItem.ToString();
+            lbTeam2.Items.Add(sp1);
+            lbTeam1.Items.Remove(sp1);
+        }
+
+        //remove selected play form lbteam2 and add it to lbteam1
+        private void btn_tradeLeft_Click(object sender, EventArgs e)
+        {
+            string sp2 = lbTeam2.SelectedItem.ToString();
+            lbTeam1.Items.Add(sp2);
+            lbTeam2.Items.Remove(sp2);
+        }
+
+        private void btn_confirmTrade_Click(object sender, EventArgs e)
+        {
+            // Connect to database
+            SoccerPlayerDB db = new SoccerPlayerDB();
+
+            string team1 = cbTeam1.SelectedItem.ToString();
+            string team2 = cbTeam2.SelectedItem.ToString();
+
+            int numTeam1 = lbTeam1.Items.Count;
+            int numTeam2 = lbTeam2.Items.Count;
+
+            //get team1 player's first name, last name(first name and last name is separte by ' ', but some player has middle name as a part of last name)
+            for (int i = 0; i < numTeam1; i++)
+            {
+                // Create player
+                SoccerPlayer player = new SoccerPlayer();
+
+                player.FirstName = lbTeam1.Items[i].ToString().Split(' ')[0];
+                player.LastName = lbTeam1.Items[i].ToString().Replace(player.FirstName + ' ', "");
+                player.Team = team1;
+
+                int result1 = db.tradePlayer(player);
+
+                if (result1 == 0)
+                {
+                    MessageBox.Show(player.FirstName + " " + player.LastName + " cannot be traded!", "Trade Player Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+
+            //get team2 player's first name, last name(first name and last name is separte by ' ', but some player has middle name as a part of last name)
+            for (int i = 0; i < numTeam2; i++)
+            {
+                // Create player
+                SoccerPlayer player = new SoccerPlayer();
+
+                player.FirstName = lbTeam2.Items[i].ToString().Split(' ')[0];
+                player.LastName = lbTeam2.Items[i].ToString().Replace(player.FirstName + ' ', "");
+                player.Team = team2;
+
+                int result2 = db.tradePlayer(player);
+
+                if (result2 == 0)
+                {
+                    MessageBox.Show(player.FirstName + " " + player.LastName + " cannot be traded!", "Trade Player Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+
+            showAllPlayers();
+        }
     }
 }

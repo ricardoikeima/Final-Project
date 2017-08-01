@@ -29,6 +29,16 @@ namespace FinalProject.model
             return db.executeNonQuery(command);
         }
 
+        //trade player
+        public int tradePlayer(SoccerPlayer player)
+        {
+            // Create command
+            string command = string.Format("UPDATE {0} SET team = '{1}' WHERE fname = '{2}' AND lname = '{3}'", table, player.Team, player.FirstName, player.LastName);
+
+            return db.executeNonQuery(command);
+        }
+
+
         // Update a team
         public int updatePlayer(SoccerPlayer player)
         {

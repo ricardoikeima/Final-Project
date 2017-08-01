@@ -30,6 +30,28 @@
             this.rbEditPlayer = new System.Windows.Forms.RadioButton();
             this.rbViewPlayer = new System.Windows.Forms.RadioButton();
             this.dataGridViewPlayers = new System.Windows.Forms.DataGridView();
+            this.gbEditPlayer = new System.Windows.Forms.GroupBox();
+            this.numWeight = new System.Windows.Forms.NumericUpDown();
+            this.numHeight = new System.Windows.Forms.NumericUpDown();
+            this.numNumber = new System.Windows.Forms.NumericUpDown();
+            this.numAge = new System.Windows.Forms.NumericUpDown();
+            this.lblPlayerId = new System.Windows.Forms.Label();
+            this.cbPlayerTeams = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.txtPosition = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.txtLName = new System.Windows.Forms.TextBox();
+            this.cbDeletePlayer = new System.Windows.Forms.CheckBox();
+            this.btnUpdatePlayer = new System.Windows.Forms.Button();
+            this.btnClearPlayer = new System.Windows.Forms.Button();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtFName = new System.Windows.Forms.TextBox();
+            this.btnAddPlayer = new System.Windows.Forms.Button();
             this.gbViewPlayer = new System.Windows.Forms.GroupBox();
             this.txtViewPlayerAgeTo = new System.Windows.Forms.TextBox();
             this.txtViewPlayerAgeFrom = new System.Windows.Forms.TextBox();
@@ -55,32 +77,20 @@
             this.label21 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
             this.txtViewPlayerFirstName = new System.Windows.Forms.TextBox();
-            this.gbEditPlayer = new System.Windows.Forms.GroupBox();
-            this.numWeight = new System.Windows.Forms.NumericUpDown();
-            this.numHeight = new System.Windows.Forms.NumericUpDown();
-            this.numNumber = new System.Windows.Forms.NumericUpDown();
-            this.numAge = new System.Windows.Forms.NumericUpDown();
-            this.lblPlayerId = new System.Windows.Forms.Label();
-            this.cbPlayerTeams = new System.Windows.Forms.ComboBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.txtPosition = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.txtLName = new System.Windows.Forms.TextBox();
-            this.cbDeletePlayer = new System.Windows.Forms.CheckBox();
-            this.btnUpdatePlayer = new System.Windows.Forms.Button();
-            this.btnClearPlayer = new System.Windows.Forms.Button();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.txtFName = new System.Windows.Forms.TextBox();
-            this.btnAddPlayer = new System.Windows.Forms.Button();
             this.Teams = new System.Windows.Forms.TabPage();
             this.rbEditTeam = new System.Windows.Forms.RadioButton();
             this.rbViewTeam = new System.Windows.Forms.RadioButton();
             this.dataGridViewTeams = new System.Windows.Forms.DataGridView();
+            this.gbEditTeam = new System.Windows.Forms.GroupBox();
+            this.txtDivision = new System.Windows.Forms.TextBox();
+            this.btnAddTeam = new System.Windows.Forms.Button();
+            this.txtName = new System.Windows.Forms.TextBox();
+            this.lblName = new System.Windows.Forms.Label();
+            this.lblTeamId = new System.Windows.Forms.Label();
+            this.lblDivision = new System.Windows.Forms.Label();
+            this.cbDeleteTeam = new System.Windows.Forms.CheckBox();
+            this.btnClearTeams = new System.Windows.Forms.Button();
+            this.btnUpdateTeam = new System.Windows.Forms.Button();
             this.gbViewTeam = new System.Windows.Forms.GroupBox();
             this.txtRankingTo = new System.Windows.Forms.TextBox();
             this.txtRankingFrom = new System.Windows.Forms.TextBox();
@@ -93,16 +103,6 @@
             this.label10 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.btnClearTeamFilter = new System.Windows.Forms.Button();
-            this.gbEditTeam = new System.Windows.Forms.GroupBox();
-            this.txtDivision = new System.Windows.Forms.TextBox();
-            this.btnAddTeam = new System.Windows.Forms.Button();
-            this.txtName = new System.Windows.Forms.TextBox();
-            this.lblName = new System.Windows.Forms.Label();
-            this.lblTeamId = new System.Windows.Forms.Label();
-            this.lblDivision = new System.Windows.Forms.Label();
-            this.cbDeleteTeam = new System.Windows.Forms.CheckBox();
-            this.btnClearTeams = new System.Windows.Forms.Button();
-            this.btnUpdateTeam = new System.Windows.Forms.Button();
             this.trade = new System.Windows.Forms.TabPage();
             this.btn_confirmTrade = new System.Windows.Forms.Button();
             this.btn_tradeLeft = new System.Windows.Forms.Button();
@@ -136,16 +136,16 @@
             this.tabControl.SuspendLayout();
             this.Players.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPlayers)).BeginInit();
-            this.gbViewPlayer.SuspendLayout();
             this.gbEditPlayer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numWeight)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numHeight)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numNumber)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numAge)).BeginInit();
+            this.gbViewPlayer.SuspendLayout();
             this.Teams.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTeams)).BeginInit();
-            this.gbViewTeam.SuspendLayout();
             this.gbEditTeam.SuspendLayout();
+            this.gbViewTeam.SuspendLayout();
             this.trade.SuspendLayout();
             this.standings.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewStandings)).BeginInit();
@@ -239,244 +239,6 @@
             this.dataGridViewPlayers.Size = new System.Drawing.Size(699, 179);
             this.dataGridViewPlayers.TabIndex = 0;
             this.dataGridViewPlayers.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewPlayers_CellClick);
-            // 
-            // gbViewPlayer
-            // 
-            this.gbViewPlayer.Controls.Add(this.txtViewPlayerAgeTo);
-            this.gbViewPlayer.Controls.Add(this.txtViewPlayerAgeFrom);
-            this.gbViewPlayer.Controls.Add(this.txtViewPlayerHeightTo);
-            this.gbViewPlayer.Controls.Add(this.txtViewPlayerHeightFrom);
-            this.gbViewPlayer.Controls.Add(this.txtViewPlayerWeightTo);
-            this.gbViewPlayer.Controls.Add(this.txtViewPlayerWeightFrom);
-            this.gbViewPlayer.Controls.Add(this.label14);
-            this.gbViewPlayer.Controls.Add(this.label23);
-            this.gbViewPlayer.Controls.Add(this.label16);
-            this.gbViewPlayer.Controls.Add(this.label17);
-            this.gbViewPlayer.Controls.Add(this.label19);
-            this.gbViewPlayer.Controls.Add(this.txtViewPlayerNumberTo);
-            this.gbViewPlayer.Controls.Add(this.txtViewPlayerNumberFrom);
-            this.gbViewPlayer.Controls.Add(this.txtViewPlayerPosition);
-            this.gbViewPlayer.Controls.Add(this.btn_filter);
-            this.gbViewPlayer.Controls.Add(this.cbViewPlayerTeam);
-            this.gbViewPlayer.Controls.Add(this.label15);
-            this.gbViewPlayer.Controls.Add(this.label18);
-            this.gbViewPlayer.Controls.Add(this.label20);
-            this.gbViewPlayer.Controls.Add(this.txtViewPlayerLastName);
-            this.gbViewPlayer.Controls.Add(this.btnClearPlayerFilter);
-            this.gbViewPlayer.Controls.Add(this.label21);
-            this.gbViewPlayer.Controls.Add(this.label22);
-            this.gbViewPlayer.Controls.Add(this.txtViewPlayerFirstName);
-            this.gbViewPlayer.Location = new System.Drawing.Point(3, 39);
-            this.gbViewPlayer.Name = "gbViewPlayer";
-            this.gbViewPlayer.Size = new System.Drawing.Size(695, 172);
-            this.gbViewPlayer.TabIndex = 40;
-            this.gbViewPlayer.TabStop = false;
-            this.gbViewPlayer.Text = "View Player";
-            // 
-            // txtViewPlayerAgeTo
-            // 
-            this.txtViewPlayerAgeTo.Location = new System.Drawing.Point(502, 25);
-            this.txtViewPlayerAgeTo.Name = "txtViewPlayerAgeTo";
-            this.txtViewPlayerAgeTo.Size = new System.Drawing.Size(59, 20);
-            this.txtViewPlayerAgeTo.TabIndex = 6;
-            this.txtViewPlayerAgeTo.Validating += new System.ComponentModel.CancelEventHandler(this.txtViewPlayerAgeTo_Validating);
-            // 
-            // txtViewPlayerAgeFrom
-            // 
-            this.txtViewPlayerAgeFrom.Location = new System.Drawing.Point(420, 24);
-            this.txtViewPlayerAgeFrom.Name = "txtViewPlayerAgeFrom";
-            this.txtViewPlayerAgeFrom.Size = new System.Drawing.Size(59, 20);
-            this.txtViewPlayerAgeFrom.TabIndex = 5;
-            this.txtViewPlayerAgeFrom.Validating += new System.ComponentModel.CancelEventHandler(this.txtViewPlayerAgeFrom_Validating);
-            // 
-            // txtViewPlayerHeightTo
-            // 
-            this.txtViewPlayerHeightTo.Location = new System.Drawing.Point(502, 50);
-            this.txtViewPlayerHeightTo.Name = "txtViewPlayerHeightTo";
-            this.txtViewPlayerHeightTo.Size = new System.Drawing.Size(59, 20);
-            this.txtViewPlayerHeightTo.TabIndex = 8;
-            this.txtViewPlayerHeightTo.Validating += new System.ComponentModel.CancelEventHandler(this.txtViewPlayerHeightTo_Validating);
-            // 
-            // txtViewPlayerHeightFrom
-            // 
-            this.txtViewPlayerHeightFrom.Location = new System.Drawing.Point(420, 50);
-            this.txtViewPlayerHeightFrom.Name = "txtViewPlayerHeightFrom";
-            this.txtViewPlayerHeightFrom.Size = new System.Drawing.Size(59, 20);
-            this.txtViewPlayerHeightFrom.TabIndex = 7;
-            this.txtViewPlayerHeightFrom.Validating += new System.ComponentModel.CancelEventHandler(this.txtViewPlayerHeightFrom_Validating);
-            // 
-            // txtViewPlayerWeightTo
-            // 
-            this.txtViewPlayerWeightTo.Location = new System.Drawing.Point(502, 76);
-            this.txtViewPlayerWeightTo.Name = "txtViewPlayerWeightTo";
-            this.txtViewPlayerWeightTo.Size = new System.Drawing.Size(59, 20);
-            this.txtViewPlayerWeightTo.TabIndex = 10;
-            this.txtViewPlayerWeightTo.Validating += new System.ComponentModel.CancelEventHandler(this.txtViewPlayerWeightTo_Validating);
-            // 
-            // txtViewPlayerWeightFrom
-            // 
-            this.txtViewPlayerWeightFrom.Location = new System.Drawing.Point(420, 76);
-            this.txtViewPlayerWeightFrom.Name = "txtViewPlayerWeightFrom";
-            this.txtViewPlayerWeightFrom.Size = new System.Drawing.Size(59, 20);
-            this.txtViewPlayerWeightFrom.TabIndex = 9;
-            this.txtViewPlayerWeightFrom.Validating += new System.ComponentModel.CancelEventHandler(this.txtViewPlayerWeightFrom_Validating);
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(503, 8);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(23, 13);
-            this.label14.TabIndex = 33;
-            this.label14.Text = "To:";
-            // 
-            // label23
-            // 
-            this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(419, 8);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(33, 13);
-            this.label23.TabIndex = 32;
-            this.label23.Text = "From:";
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(358, 53);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(41, 13);
-            this.label16.TabIndex = 30;
-            this.label16.Text = "Height:";
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(358, 81);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(47, 13);
-            this.label17.TabIndex = 28;
-            this.label17.Text = "Weight: ";
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(357, 29);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(29, 13);
-            this.label19.TabIndex = 24;
-            this.label19.Text = "Age:";
-            // 
-            // txtViewPlayerNumberTo
-            // 
-            this.txtViewPlayerNumberTo.Location = new System.Drawing.Point(502, 102);
-            this.txtViewPlayerNumberTo.Name = "txtViewPlayerNumberTo";
-            this.txtViewPlayerNumberTo.Size = new System.Drawing.Size(59, 20);
-            this.txtViewPlayerNumberTo.TabIndex = 12;
-            this.txtViewPlayerNumberTo.Validating += new System.ComponentModel.CancelEventHandler(this.txtViewPlayerNumberTo_Validating);
-            // 
-            // txtViewPlayerNumberFrom
-            // 
-            this.txtViewPlayerNumberFrom.Location = new System.Drawing.Point(420, 103);
-            this.txtViewPlayerNumberFrom.Name = "txtViewPlayerNumberFrom";
-            this.txtViewPlayerNumberFrom.Size = new System.Drawing.Size(59, 20);
-            this.txtViewPlayerNumberFrom.TabIndex = 11;
-            this.txtViewPlayerNumberFrom.Validating += new System.ComponentModel.CancelEventHandler(this.txtViewPlayerNumberFrom_Validating);
-            // 
-            // txtViewPlayerPosition
-            // 
-            this.txtViewPlayerPosition.Location = new System.Drawing.Point(82, 124);
-            this.txtViewPlayerPosition.Name = "txtViewPlayerPosition";
-            this.txtViewPlayerPosition.Size = new System.Drawing.Size(59, 20);
-            this.txtViewPlayerPosition.TabIndex = 4;
-            // 
-            // btn_filter
-            // 
-            this.btn_filter.Location = new System.Drawing.Point(604, 136);
-            this.btn_filter.Margin = new System.Windows.Forms.Padding(1);
-            this.btn_filter.Name = "btn_filter";
-            this.btn_filter.Size = new System.Drawing.Size(75, 23);
-            this.btn_filter.TabIndex = 14;
-            this.btn_filter.Text = "Filter";
-            this.btn_filter.UseVisualStyleBackColor = true;
-            this.btn_filter.Click += new System.EventHandler(this.btn_filter_Click);
-            // 
-            // cbViewPlayerTeam
-            // 
-            this.cbViewPlayerTeam.FormattingEnabled = true;
-            this.cbViewPlayerTeam.Location = new System.Drawing.Point(82, 91);
-            this.cbViewPlayerTeam.Name = "cbViewPlayerTeam";
-            this.cbViewPlayerTeam.Size = new System.Drawing.Size(188, 21);
-            this.cbViewPlayerTeam.TabIndex = 3;
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(13, 91);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(37, 13);
-            this.label15.TabIndex = 31;
-            this.label15.Text = "Team:";
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(15, 127);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(50, 13);
-            this.label18.TabIndex = 26;
-            this.label18.Text = "Position: ";
-            // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(13, 56);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(64, 13);
-            this.label20.TabIndex = 22;
-            this.label20.Text = "Last Name: ";
-            // 
-            // txtViewPlayerLastName
-            // 
-            this.txtViewPlayerLastName.Location = new System.Drawing.Point(82, 56);
-            this.txtViewPlayerLastName.Name = "txtViewPlayerLastName";
-            this.txtViewPlayerLastName.Size = new System.Drawing.Size(188, 20);
-            this.txtViewPlayerLastName.TabIndex = 2;
-            // 
-            // btnClearPlayerFilter
-            // 
-            this.btnClearPlayerFilter.CausesValidation = false;
-            this.btnClearPlayerFilter.Location = new System.Drawing.Point(511, 136);
-            this.btnClearPlayerFilter.Name = "btnClearPlayerFilter";
-            this.btnClearPlayerFilter.Size = new System.Drawing.Size(75, 23);
-            this.btnClearPlayerFilter.TabIndex = 13;
-            this.btnClearPlayerFilter.Text = "Clear";
-            this.btnClearPlayerFilter.UseVisualStyleBackColor = true;
-            this.btnClearPlayerFilter.Click += new System.EventHandler(this.btnClearPlayerFilter_Click);
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(358, 109);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(50, 13);
-            this.label21.TabIndex = 17;
-            this.label21.Text = "Number: ";
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(13, 24);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(63, 13);
-            this.label22.TabIndex = 16;
-            this.label22.Text = "First Name: ";
-            // 
-            // txtViewPlayerFirstName
-            // 
-            this.txtViewPlayerFirstName.Location = new System.Drawing.Point(82, 21);
-            this.txtViewPlayerFirstName.Name = "txtViewPlayerFirstName";
-            this.txtViewPlayerFirstName.Size = new System.Drawing.Size(188, 20);
-            this.txtViewPlayerFirstName.TabIndex = 1;
             // 
             // gbEditPlayer
             // 
@@ -733,6 +495,244 @@
             this.btnAddPlayer.UseVisualStyleBackColor = true;
             this.btnAddPlayer.Click += new System.EventHandler(this.btnAddPlayer_Click);
             // 
+            // gbViewPlayer
+            // 
+            this.gbViewPlayer.Controls.Add(this.txtViewPlayerAgeTo);
+            this.gbViewPlayer.Controls.Add(this.txtViewPlayerAgeFrom);
+            this.gbViewPlayer.Controls.Add(this.txtViewPlayerHeightTo);
+            this.gbViewPlayer.Controls.Add(this.txtViewPlayerHeightFrom);
+            this.gbViewPlayer.Controls.Add(this.txtViewPlayerWeightTo);
+            this.gbViewPlayer.Controls.Add(this.txtViewPlayerWeightFrom);
+            this.gbViewPlayer.Controls.Add(this.label14);
+            this.gbViewPlayer.Controls.Add(this.label23);
+            this.gbViewPlayer.Controls.Add(this.label16);
+            this.gbViewPlayer.Controls.Add(this.label17);
+            this.gbViewPlayer.Controls.Add(this.label19);
+            this.gbViewPlayer.Controls.Add(this.txtViewPlayerNumberTo);
+            this.gbViewPlayer.Controls.Add(this.txtViewPlayerNumberFrom);
+            this.gbViewPlayer.Controls.Add(this.txtViewPlayerPosition);
+            this.gbViewPlayer.Controls.Add(this.btn_filter);
+            this.gbViewPlayer.Controls.Add(this.cbViewPlayerTeam);
+            this.gbViewPlayer.Controls.Add(this.label15);
+            this.gbViewPlayer.Controls.Add(this.label18);
+            this.gbViewPlayer.Controls.Add(this.label20);
+            this.gbViewPlayer.Controls.Add(this.txtViewPlayerLastName);
+            this.gbViewPlayer.Controls.Add(this.btnClearPlayerFilter);
+            this.gbViewPlayer.Controls.Add(this.label21);
+            this.gbViewPlayer.Controls.Add(this.label22);
+            this.gbViewPlayer.Controls.Add(this.txtViewPlayerFirstName);
+            this.gbViewPlayer.Location = new System.Drawing.Point(3, 39);
+            this.gbViewPlayer.Name = "gbViewPlayer";
+            this.gbViewPlayer.Size = new System.Drawing.Size(695, 172);
+            this.gbViewPlayer.TabIndex = 40;
+            this.gbViewPlayer.TabStop = false;
+            this.gbViewPlayer.Text = "View Player";
+            // 
+            // txtViewPlayerAgeTo
+            // 
+            this.txtViewPlayerAgeTo.Location = new System.Drawing.Point(502, 25);
+            this.txtViewPlayerAgeTo.Name = "txtViewPlayerAgeTo";
+            this.txtViewPlayerAgeTo.Size = new System.Drawing.Size(59, 20);
+            this.txtViewPlayerAgeTo.TabIndex = 6;
+            this.txtViewPlayerAgeTo.Validating += new System.ComponentModel.CancelEventHandler(this.txtViewPlayerAgeTo_Validating);
+            // 
+            // txtViewPlayerAgeFrom
+            // 
+            this.txtViewPlayerAgeFrom.Location = new System.Drawing.Point(420, 24);
+            this.txtViewPlayerAgeFrom.Name = "txtViewPlayerAgeFrom";
+            this.txtViewPlayerAgeFrom.Size = new System.Drawing.Size(59, 20);
+            this.txtViewPlayerAgeFrom.TabIndex = 5;
+            this.txtViewPlayerAgeFrom.Validating += new System.ComponentModel.CancelEventHandler(this.txtViewPlayerAgeFrom_Validating);
+            // 
+            // txtViewPlayerHeightTo
+            // 
+            this.txtViewPlayerHeightTo.Location = new System.Drawing.Point(502, 50);
+            this.txtViewPlayerHeightTo.Name = "txtViewPlayerHeightTo";
+            this.txtViewPlayerHeightTo.Size = new System.Drawing.Size(59, 20);
+            this.txtViewPlayerHeightTo.TabIndex = 8;
+            this.txtViewPlayerHeightTo.Validating += new System.ComponentModel.CancelEventHandler(this.txtViewPlayerHeightTo_Validating);
+            // 
+            // txtViewPlayerHeightFrom
+            // 
+            this.txtViewPlayerHeightFrom.Location = new System.Drawing.Point(420, 50);
+            this.txtViewPlayerHeightFrom.Name = "txtViewPlayerHeightFrom";
+            this.txtViewPlayerHeightFrom.Size = new System.Drawing.Size(59, 20);
+            this.txtViewPlayerHeightFrom.TabIndex = 7;
+            this.txtViewPlayerHeightFrom.Validating += new System.ComponentModel.CancelEventHandler(this.txtViewPlayerHeightFrom_Validating);
+            // 
+            // txtViewPlayerWeightTo
+            // 
+            this.txtViewPlayerWeightTo.Location = new System.Drawing.Point(502, 76);
+            this.txtViewPlayerWeightTo.Name = "txtViewPlayerWeightTo";
+            this.txtViewPlayerWeightTo.Size = new System.Drawing.Size(59, 20);
+            this.txtViewPlayerWeightTo.TabIndex = 10;
+            this.txtViewPlayerWeightTo.Validating += new System.ComponentModel.CancelEventHandler(this.txtViewPlayerWeightTo_Validating);
+            // 
+            // txtViewPlayerWeightFrom
+            // 
+            this.txtViewPlayerWeightFrom.Location = new System.Drawing.Point(420, 76);
+            this.txtViewPlayerWeightFrom.Name = "txtViewPlayerWeightFrom";
+            this.txtViewPlayerWeightFrom.Size = new System.Drawing.Size(59, 20);
+            this.txtViewPlayerWeightFrom.TabIndex = 9;
+            this.txtViewPlayerWeightFrom.Validating += new System.ComponentModel.CancelEventHandler(this.txtViewPlayerWeightFrom_Validating);
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(503, 8);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(23, 13);
+            this.label14.TabIndex = 33;
+            this.label14.Text = "To:";
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(419, 8);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(33, 13);
+            this.label23.TabIndex = 32;
+            this.label23.Text = "From:";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(358, 53);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(41, 13);
+            this.label16.TabIndex = 30;
+            this.label16.Text = "Height:";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(358, 81);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(47, 13);
+            this.label17.TabIndex = 28;
+            this.label17.Text = "Weight: ";
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(357, 29);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(29, 13);
+            this.label19.TabIndex = 24;
+            this.label19.Text = "Age:";
+            // 
+            // txtViewPlayerNumberTo
+            // 
+            this.txtViewPlayerNumberTo.Location = new System.Drawing.Point(502, 102);
+            this.txtViewPlayerNumberTo.Name = "txtViewPlayerNumberTo";
+            this.txtViewPlayerNumberTo.Size = new System.Drawing.Size(59, 20);
+            this.txtViewPlayerNumberTo.TabIndex = 12;
+            this.txtViewPlayerNumberTo.Validating += new System.ComponentModel.CancelEventHandler(this.txtViewPlayerNumberTo_Validating);
+            // 
+            // txtViewPlayerNumberFrom
+            // 
+            this.txtViewPlayerNumberFrom.Location = new System.Drawing.Point(420, 103);
+            this.txtViewPlayerNumberFrom.Name = "txtViewPlayerNumberFrom";
+            this.txtViewPlayerNumberFrom.Size = new System.Drawing.Size(59, 20);
+            this.txtViewPlayerNumberFrom.TabIndex = 11;
+            this.txtViewPlayerNumberFrom.Validating += new System.ComponentModel.CancelEventHandler(this.txtViewPlayerNumberFrom_Validating);
+            // 
+            // txtViewPlayerPosition
+            // 
+            this.txtViewPlayerPosition.Location = new System.Drawing.Point(82, 124);
+            this.txtViewPlayerPosition.Name = "txtViewPlayerPosition";
+            this.txtViewPlayerPosition.Size = new System.Drawing.Size(59, 20);
+            this.txtViewPlayerPosition.TabIndex = 4;
+            // 
+            // btn_filter
+            // 
+            this.btn_filter.Location = new System.Drawing.Point(604, 136);
+            this.btn_filter.Margin = new System.Windows.Forms.Padding(1);
+            this.btn_filter.Name = "btn_filter";
+            this.btn_filter.Size = new System.Drawing.Size(75, 23);
+            this.btn_filter.TabIndex = 14;
+            this.btn_filter.Text = "Filter";
+            this.btn_filter.UseVisualStyleBackColor = true;
+            this.btn_filter.Click += new System.EventHandler(this.btn_filter_Click);
+            // 
+            // cbViewPlayerTeam
+            // 
+            this.cbViewPlayerTeam.FormattingEnabled = true;
+            this.cbViewPlayerTeam.Location = new System.Drawing.Point(82, 91);
+            this.cbViewPlayerTeam.Name = "cbViewPlayerTeam";
+            this.cbViewPlayerTeam.Size = new System.Drawing.Size(188, 21);
+            this.cbViewPlayerTeam.TabIndex = 3;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(13, 91);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(37, 13);
+            this.label15.TabIndex = 31;
+            this.label15.Text = "Team:";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(15, 127);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(50, 13);
+            this.label18.TabIndex = 26;
+            this.label18.Text = "Position: ";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(13, 56);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(64, 13);
+            this.label20.TabIndex = 22;
+            this.label20.Text = "Last Name: ";
+            // 
+            // txtViewPlayerLastName
+            // 
+            this.txtViewPlayerLastName.Location = new System.Drawing.Point(82, 56);
+            this.txtViewPlayerLastName.Name = "txtViewPlayerLastName";
+            this.txtViewPlayerLastName.Size = new System.Drawing.Size(188, 20);
+            this.txtViewPlayerLastName.TabIndex = 2;
+            // 
+            // btnClearPlayerFilter
+            // 
+            this.btnClearPlayerFilter.CausesValidation = false;
+            this.btnClearPlayerFilter.Location = new System.Drawing.Point(511, 136);
+            this.btnClearPlayerFilter.Name = "btnClearPlayerFilter";
+            this.btnClearPlayerFilter.Size = new System.Drawing.Size(75, 23);
+            this.btnClearPlayerFilter.TabIndex = 13;
+            this.btnClearPlayerFilter.Text = "Clear";
+            this.btnClearPlayerFilter.UseVisualStyleBackColor = true;
+            this.btnClearPlayerFilter.Click += new System.EventHandler(this.btnClearPlayerFilter_Click);
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(358, 109);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(50, 13);
+            this.label21.TabIndex = 17;
+            this.label21.Text = "Number: ";
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(13, 24);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(63, 13);
+            this.label22.TabIndex = 16;
+            this.label22.Text = "First Name: ";
+            // 
+            // txtViewPlayerFirstName
+            // 
+            this.txtViewPlayerFirstName.Location = new System.Drawing.Point(82, 21);
+            this.txtViewPlayerFirstName.Name = "txtViewPlayerFirstName";
+            this.txtViewPlayerFirstName.Size = new System.Drawing.Size(188, 20);
+            this.txtViewPlayerFirstName.TabIndex = 1;
+            // 
             // Teams
             // 
             this.Teams.Controls.Add(this.rbEditTeam);
@@ -783,6 +783,108 @@
             this.dataGridViewTeams.Size = new System.Drawing.Size(362, 378);
             this.dataGridViewTeams.TabIndex = 0;
             this.dataGridViewTeams.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewTeams_CellClick);
+            // 
+            // gbEditTeam
+            // 
+            this.gbEditTeam.Controls.Add(this.txtDivision);
+            this.gbEditTeam.Controls.Add(this.btnAddTeam);
+            this.gbEditTeam.Controls.Add(this.txtName);
+            this.gbEditTeam.Controls.Add(this.lblName);
+            this.gbEditTeam.Controls.Add(this.lblTeamId);
+            this.gbEditTeam.Controls.Add(this.lblDivision);
+            this.gbEditTeam.Controls.Add(this.cbDeleteTeam);
+            this.gbEditTeam.Controls.Add(this.btnClearTeams);
+            this.gbEditTeam.Controls.Add(this.btnUpdateTeam);
+            this.gbEditTeam.Location = new System.Drawing.Point(8, 39);
+            this.gbEditTeam.Name = "gbEditTeam";
+            this.gbEditTeam.Size = new System.Drawing.Size(316, 185);
+            this.gbEditTeam.TabIndex = 38;
+            this.gbEditTeam.TabStop = false;
+            this.gbEditTeam.Text = "Edit Team";
+            // 
+            // txtDivision
+            // 
+            this.txtDivision.Location = new System.Drawing.Point(79, 71);
+            this.txtDivision.Name = "txtDivision";
+            this.txtDivision.Size = new System.Drawing.Size(216, 20);
+            this.txtDivision.TabIndex = 2;
+            // 
+            // btnAddTeam
+            // 
+            this.btnAddTeam.Location = new System.Drawing.Point(235, 147);
+            this.btnAddTeam.Name = "btnAddTeam";
+            this.btnAddTeam.Size = new System.Drawing.Size(75, 23);
+            this.btnAddTeam.TabIndex = 6;
+            this.btnAddTeam.Text = "Add";
+            this.btnAddTeam.UseVisualStyleBackColor = true;
+            this.btnAddTeam.Click += new System.EventHandler(this.btnAddTeam_Click);
+            // 
+            // txtName
+            // 
+            this.txtName.Location = new System.Drawing.Point(79, 32);
+            this.txtName.Name = "txtName";
+            this.txtName.Size = new System.Drawing.Size(216, 20);
+            this.txtName.TabIndex = 1;
+            this.txtName.Validating += new System.ComponentModel.CancelEventHandler(this.txtName_Validating);
+            // 
+            // lblName
+            // 
+            this.lblName.AutoSize = true;
+            this.lblName.Location = new System.Drawing.Point(2, 36);
+            this.lblName.Name = "lblName";
+            this.lblName.Size = new System.Drawing.Size(71, 13);
+            this.lblName.TabIndex = 7;
+            this.lblName.Text = "Team Name: ";
+            // 
+            // lblTeamId
+            // 
+            this.lblTeamId.AutoSize = true;
+            this.lblTeamId.Location = new System.Drawing.Point(2, 120);
+            this.lblTeamId.Name = "lblTeamId";
+            this.lblTeamId.Size = new System.Drawing.Size(48, 13);
+            this.lblTeamId.TabIndex = 34;
+            this.lblTeamId.Text = "Team ID";
+            this.lblTeamId.Visible = false;
+            // 
+            // lblDivision
+            // 
+            this.lblDivision.AutoSize = true;
+            this.lblDivision.Location = new System.Drawing.Point(2, 78);
+            this.lblDivision.Name = "lblDivision";
+            this.lblDivision.Size = new System.Drawing.Size(50, 13);
+            this.lblDivision.TabIndex = 8;
+            this.lblDivision.Text = "Division: ";
+            // 
+            // cbDeleteTeam
+            // 
+            this.cbDeleteTeam.AutoSize = true;
+            this.cbDeleteTeam.Location = new System.Drawing.Point(220, 116);
+            this.cbDeleteTeam.Name = "cbDeleteTeam";
+            this.cbDeleteTeam.Size = new System.Drawing.Size(90, 17);
+            this.cbDeleteTeam.TabIndex = 3;
+            this.cbDeleteTeam.Text = "Delete record";
+            this.cbDeleteTeam.UseVisualStyleBackColor = true;
+            this.cbDeleteTeam.CheckedChanged += new System.EventHandler(this.cbDeleteTeam_CheckedChanged);
+            // 
+            // btnClearTeams
+            // 
+            this.btnClearTeams.Location = new System.Drawing.Point(143, 147);
+            this.btnClearTeams.Name = "btnClearTeams";
+            this.btnClearTeams.Size = new System.Drawing.Size(75, 23);
+            this.btnClearTeams.TabIndex = 5;
+            this.btnClearTeams.Text = "Clear";
+            this.btnClearTeams.UseVisualStyleBackColor = true;
+            this.btnClearTeams.Click += new System.EventHandler(this.btnClearTeam_Click);
+            // 
+            // btnUpdateTeam
+            // 
+            this.btnUpdateTeam.Location = new System.Drawing.Point(51, 147);
+            this.btnUpdateTeam.Name = "btnUpdateTeam";
+            this.btnUpdateTeam.Size = new System.Drawing.Size(75, 23);
+            this.btnUpdateTeam.TabIndex = 4;
+            this.btnUpdateTeam.Text = "Update";
+            this.btnUpdateTeam.UseVisualStyleBackColor = true;
+            this.btnUpdateTeam.Click += new System.EventHandler(this.btnUpdateTeam_Click);
             // 
             // gbViewTeam
             // 
@@ -900,108 +1002,6 @@
             this.btnClearTeamFilter.UseVisualStyleBackColor = true;
             this.btnClearTeamFilter.Click += new System.EventHandler(this.btnClearTeamFilter_Click);
             // 
-            // gbEditTeam
-            // 
-            this.gbEditTeam.Controls.Add(this.txtDivision);
-            this.gbEditTeam.Controls.Add(this.btnAddTeam);
-            this.gbEditTeam.Controls.Add(this.txtName);
-            this.gbEditTeam.Controls.Add(this.lblName);
-            this.gbEditTeam.Controls.Add(this.lblTeamId);
-            this.gbEditTeam.Controls.Add(this.lblDivision);
-            this.gbEditTeam.Controls.Add(this.cbDeleteTeam);
-            this.gbEditTeam.Controls.Add(this.btnClearTeams);
-            this.gbEditTeam.Controls.Add(this.btnUpdateTeam);
-            this.gbEditTeam.Location = new System.Drawing.Point(8, 39);
-            this.gbEditTeam.Name = "gbEditTeam";
-            this.gbEditTeam.Size = new System.Drawing.Size(316, 185);
-            this.gbEditTeam.TabIndex = 38;
-            this.gbEditTeam.TabStop = false;
-            this.gbEditTeam.Text = "Edit Team";
-            // 
-            // txtDivision
-            // 
-            this.txtDivision.Location = new System.Drawing.Point(79, 71);
-            this.txtDivision.Name = "txtDivision";
-            this.txtDivision.Size = new System.Drawing.Size(216, 20);
-            this.txtDivision.TabIndex = 2;
-            // 
-            // btnAddTeam
-            // 
-            this.btnAddTeam.Location = new System.Drawing.Point(235, 147);
-            this.btnAddTeam.Name = "btnAddTeam";
-            this.btnAddTeam.Size = new System.Drawing.Size(75, 23);
-            this.btnAddTeam.TabIndex = 6;
-            this.btnAddTeam.Text = "Add";
-            this.btnAddTeam.UseVisualStyleBackColor = true;
-            this.btnAddTeam.Click += new System.EventHandler(this.btnAddTeam_Click);
-            // 
-            // txtName
-            // 
-            this.txtName.Location = new System.Drawing.Point(79, 32);
-            this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(216, 20);
-            this.txtName.TabIndex = 1;
-            this.txtName.Validating += new System.ComponentModel.CancelEventHandler(this.txtName_Validating);
-            // 
-            // lblName
-            // 
-            this.lblName.AutoSize = true;
-            this.lblName.Location = new System.Drawing.Point(2, 36);
-            this.lblName.Name = "lblName";
-            this.lblName.Size = new System.Drawing.Size(71, 13);
-            this.lblName.TabIndex = 7;
-            this.lblName.Text = "Team Name: ";
-            // 
-            // lblTeamId
-            // 
-            this.lblTeamId.AutoSize = true;
-            this.lblTeamId.Location = new System.Drawing.Point(2, 120);
-            this.lblTeamId.Name = "lblTeamId";
-            this.lblTeamId.Size = new System.Drawing.Size(48, 13);
-            this.lblTeamId.TabIndex = 34;
-            this.lblTeamId.Text = "Team ID";
-            this.lblTeamId.Visible = false;
-            // 
-            // lblDivision
-            // 
-            this.lblDivision.AutoSize = true;
-            this.lblDivision.Location = new System.Drawing.Point(2, 78);
-            this.lblDivision.Name = "lblDivision";
-            this.lblDivision.Size = new System.Drawing.Size(50, 13);
-            this.lblDivision.TabIndex = 8;
-            this.lblDivision.Text = "Division: ";
-            // 
-            // cbDeleteTeam
-            // 
-            this.cbDeleteTeam.AutoSize = true;
-            this.cbDeleteTeam.Location = new System.Drawing.Point(220, 116);
-            this.cbDeleteTeam.Name = "cbDeleteTeam";
-            this.cbDeleteTeam.Size = new System.Drawing.Size(90, 17);
-            this.cbDeleteTeam.TabIndex = 3;
-            this.cbDeleteTeam.Text = "Delete record";
-            this.cbDeleteTeam.UseVisualStyleBackColor = true;
-            this.cbDeleteTeam.CheckedChanged += new System.EventHandler(this.cbDeleteTeam_CheckedChanged);
-            // 
-            // btnClearTeams
-            // 
-            this.btnClearTeams.Location = new System.Drawing.Point(143, 147);
-            this.btnClearTeams.Name = "btnClearTeams";
-            this.btnClearTeams.Size = new System.Drawing.Size(75, 23);
-            this.btnClearTeams.TabIndex = 5;
-            this.btnClearTeams.Text = "Clear";
-            this.btnClearTeams.UseVisualStyleBackColor = true;
-            this.btnClearTeams.Click += new System.EventHandler(this.btnClearTeam_Click);
-            // 
-            // btnUpdateTeam
-            // 
-            this.btnUpdateTeam.Location = new System.Drawing.Point(51, 147);
-            this.btnUpdateTeam.Name = "btnUpdateTeam";
-            this.btnUpdateTeam.Size = new System.Drawing.Size(75, 23);
-            this.btnUpdateTeam.TabIndex = 4;
-            this.btnUpdateTeam.Text = "Update";
-            this.btnUpdateTeam.UseVisualStyleBackColor = true;
-            this.btnUpdateTeam.Click += new System.EventHandler(this.btnUpdateTeam_Click);
-            // 
             // trade
             // 
             this.trade.Controls.Add(this.btn_confirmTrade);
@@ -1030,6 +1030,7 @@
             this.btn_confirmTrade.TabIndex = 9;
             this.btn_confirmTrade.Text = "Confirm Trade";
             this.btn_confirmTrade.UseVisualStyleBackColor = true;
+            this.btn_confirmTrade.Click += new System.EventHandler(this.btn_confirmTrade_Click);
             // 
             // btn_tradeLeft
             // 
@@ -1040,6 +1041,7 @@
             this.btn_tradeLeft.TabIndex = 8;
             this.btn_tradeLeft.Text = "<-";
             this.btn_tradeLeft.UseVisualStyleBackColor = true;
+            this.btn_tradeLeft.Click += new System.EventHandler(this.btn_tradeLeft_Click);
             // 
             // btn_tradeRight
             // 
@@ -1050,6 +1052,7 @@
             this.btn_tradeRight.TabIndex = 7;
             this.btn_tradeRight.Text = "->";
             this.btn_tradeRight.UseVisualStyleBackColor = true;
+            this.btn_tradeRight.Click += new System.EventHandler(this.btn_tradeRight_Click);
             // 
             // lbTeam2
             // 
@@ -1224,21 +1227,21 @@
             this.Players.ResumeLayout(false);
             this.Players.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPlayers)).EndInit();
-            this.gbViewPlayer.ResumeLayout(false);
-            this.gbViewPlayer.PerformLayout();
             this.gbEditPlayer.ResumeLayout(false);
             this.gbEditPlayer.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numWeight)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numHeight)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numNumber)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numAge)).EndInit();
+            this.gbViewPlayer.ResumeLayout(false);
+            this.gbViewPlayer.PerformLayout();
             this.Teams.ResumeLayout(false);
             this.Teams.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTeams)).EndInit();
-            this.gbViewTeam.ResumeLayout(false);
-            this.gbViewTeam.PerformLayout();
             this.gbEditTeam.ResumeLayout(false);
             this.gbEditTeam.PerformLayout();
+            this.gbViewTeam.ResumeLayout(false);
+            this.gbViewTeam.PerformLayout();
             this.trade.ResumeLayout(false);
             this.standings.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewStandings)).EndInit();
