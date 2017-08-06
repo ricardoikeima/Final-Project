@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="controller\SoccerScheduleDB.cs" />
     <Compile Include="cprojectDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -63,6 +64,7 @@
     <Compile Include="controller\ConnectDB.cs" />
     <Compile Include="model\SoccerPlayer.cs" />
     <Compile Include="controller\SoccerPlayerDB.cs" />
+    <Compile Include="model\SoccerSchedule.cs" />
     <Compile Include="model\SoccerTeam.cs" />
     <Compile Include="controller\SoccerTeamDB.cs" />
     <Compile Include="Program.cs" />

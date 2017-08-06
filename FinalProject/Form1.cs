@@ -18,6 +18,7 @@ namespace FinalProject
 
         DataTable teams;
         DataTable players;
+        DataTable games;
 
         public Form1()
         {
@@ -70,12 +71,15 @@ namespace FinalProject
 
             SoccerPlayerDB playersDB = new SoccerPlayerDB();
             SoccerTeamDB teamsDB = new SoccerTeamDB();
+            SoccerScheduleDB gamesDB = new SoccerScheduleDB();
             try
             {
 
                 showAllPlayers();
 
                 showAllTeams();
+
+                showAllGames();
 
                 /////// standings tab /////////
 
@@ -1324,5 +1328,254 @@ namespace FinalProject
 
             showAllPlayers();
         }
+        private void showAllGames()
+        {
+            SoccerScheduleDB gamesDB = new SoccerScheduleDB();
+            SoccerTeamDB teamsDB = new SoccerTeamDB();
+            games = gamesDB.getAll();
+            teams = teamsDB.getAll();
+            // Update Grid Views
+
+            dataGridViewGames.DataSource = games;
+            dataGridViewGames.Columns[1].DefaultCellStyle.Format = "yyyy-MM-dd";
+            // Update ComboBox
+            cbHomeTeam.Items.Clear();
+            cbVisitorTeam.Items.Clear();
+
+            foreach (DataRow row in teams.Rows)
+            {
+                cbHomeTeam.Items.Add(row["tname"].ToString());
+                cbVisitorTeam.Items.Add(row["tname"].ToString());
+                cbFilterGames.Items.Add(row["tname"].ToString());
+
+            }
+        }
+
+        private void btnAddGame_Click(object sender, EventArgs e)
+        {
+            // Connect to database
+            SoccerScheduleDB db = new SoccerScheduleDB();
+            games = db.getAll();
+            int numrows = games.Rows.Count;
+            string[] ids = games.AsEnumerable().Select(row => row["gameNo"].ToString()).ToArray();
+
+
+            int newId = Convert.ToInt32(ids[numrows - 1]) + 1;
+
+            string date = dtpGame.Text;
+            string hometeam = cbHomeTeam.Text;
+            int homescore = Convert.ToInt32(nudHomeScore.Value);
+            string visitorteam = cbVisitorTeam.Text;
+            int visitorscore = Convert.ToInt32(nudVisitorScore.Value);
+            SoccerSchedule game = new SoccerSchedule(newId, date, hometeam, homescore, visitorteam, visitorscore);
+
+            try
+            {
+                int result = db.addGame(game); // Save game
+
+                if (result > 0)
+                {
+                    MessageBox.Show(hometeam + "vs" + visitorteam + " was added successfully!", "Add Game", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    clearGameEditFields();
+                    showAllGames();
+                }
+                else
+                {
+                    MessageBox.Show("Game cannot be added!", "Add Game Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+        }
+
+
+
+        private void clearGameEditFields()
+        {
+            lblGameId.Text = "";
+            dtpGame.Value = DateTime.Now;
+            cbHomeTeam.SelectedIndex = -1;
+            nudHomeScore.Value = 0;
+            cbVisitorTeam.SelectedIndex = -1;
+            nudVisitorScore.Value = 0;
+
+        }
+
+        private void dataGridViewGames_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+            // Get the index of the cell
+            int rowIndex = e.RowIndex;
+
+            // If user do not click on header
+            if (rowIndex != -1)
+            {
+                DataGridViewRow row = dataGridViewGames.Rows[rowIndex];
+
+                // Update text box
+                dtpGame.Value = (DateTime)row.Cells[1].Value;
+                cbHomeTeam.SelectedItem = row.Cells[2].Value;
+                nudHomeScore.Value = Convert.ToInt32(row.Cells[3].Value);
+                cbVisitorTeam.SelectedItem = row.Cells[4].Value;
+                nudVisitorScore.Value = Convert.ToInt32(row.Cells[5].Value);
+                lblGameId.Text = row.Cells[0].Value.ToString();
+
+
+            }
+
+
+
+
+
+        }
+
+        private void btnUpdateGame_Click(object sender, EventArgs e)
+        {
+            // Connect to database
+            SoccerScheduleDB db = new SoccerScheduleDB();
+
+            // Get game details
+            if (lblGameId.Text == "")
+            {
+                MessageBox.Show("Please select Game to be updated from GridView", "Update Game Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                int id = Convert.ToInt32(lblGameId.Text);
+                string date = dtpGame.Value.ToString("yyyy-MM-dd"); ;
+                string hometeam = cbHomeTeam.Text;
+                int homescore = Convert.ToInt32(nudHomeScore.Value);
+                string visitorteam = cbVisitorTeam.Text;
+                int visitorscore = Convert.ToInt32(nudVisitorScore.Value);
+
+
+                // Verify if game exist
+                if (db.getById(id) != null)
+                {
+
+                    SoccerSchedule game = new SoccerSchedule(id, date, hometeam, homescore, visitorteam, visitorscore);
+
+
+                    try
+                    {
+                        int result = db.updateTeam(game, id); // Save Game
+
+                        if (result > 0)
+                        {
+                            MessageBox.Show("Game was successfully updated!", "Update Game", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            clearGameEditFields();
+                            showAllGames();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Game cannot be updated!", "Update Game Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error: " + ex.Message);
+                    }
+                }
+
+
+
+                else // If game doesn't exist
+                {
+                    MessageBox.Show("Please, select Game from Grid View", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void btnDeleteGame_Click(object sender, EventArgs e)
+        {
+            SoccerScheduleDB db = new SoccerScheduleDB();
+            if (lblGameId.Text == "")
+            {
+                MessageBox.Show("Please select Game to be deleted from GridView", "Delete Game Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                int id = Convert.ToInt32(lblGameId.Text);
+                string date = dtpGame.Value.ToString("yyyy-MM-dd"); ;
+                string hometeam = cbHomeTeam.Text;
+                int homescore = Convert.ToInt32(nudHomeScore.Value);
+                string visitorteam = cbVisitorTeam.Text;
+                int visitorscore = Convert.ToInt32(nudVisitorScore.Value);
+                SoccerSchedule game = new SoccerSchedule(id, date, hometeam, homescore, visitorteam, visitorscore);
+
+                DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete selected Game? ", "Delete Team", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                if (dialogResult == DialogResult.No) // Do not delete!
+                {
+
+                }
+                else
+                {
+                    try
+                    {
+
+                        int result = db.deleteGame(game); // Save team
+
+                        if (result > 0)
+                        {
+                            MessageBox.Show("Game successfully deleted!", "Delete Game", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                            clearGameEditFields();
+                            showAllGames();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Game cannot be deleted!", "Delete Game Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error: " + ex.Message);
+                    }
+                }
+            }
+        }
+
+        private void btnFilterGames_Click(object sender, EventArgs e)
+        {
+            DataView view = new DataView(games);
+
+            string filter = "";
+
+            if (!string.IsNullOrWhiteSpace(cbFilterGames.Text))
+            {
+                filter += string.Format("home = '{0}' OR guest ='{0}' ", cbFilterGames.Text);
+            }
+
+
+            if (filter != "")
+            {
+                
+
+                // Set filter
+                view.RowFilter = filter;
+
+                //Update DataGridView
+                dataGridViewGames.DataSource = view;
+
+            }
+            else // All fields are blank! Show all
+            {
+                showAllGames();
+            }
+        }
+
+        private void btnClearFilterGames_Click(object sender, EventArgs e)
+        {
+            clearGameEditFields();
+            showAllGames();
+        }
+
+
+
     }
+        
+        
+    
 }
