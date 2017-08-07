@@ -1367,26 +1367,33 @@ namespace FinalProject
             int homescore = Convert.ToInt32(nudHomeScore.Value);
             string visitorteam = cbVisitorTeam.Text;
             int visitorscore = Convert.ToInt32(nudVisitorScore.Value);
-            SoccerSchedule game = new SoccerSchedule(newId, date, hometeam, homescore, visitorteam, visitorscore);
-
-            try
+            if (hometeam == visitorteam)
             {
-                int result = db.addGame(game); // Save game
-
-                if (result > 0)
-                {
-                    MessageBox.Show(hometeam + "vs" + visitorteam + " was added successfully!", "Add Game", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    clearGameEditFields();
-                    showAllGames();
-                }
-                else
-                {
-                    MessageBox.Show("Game cannot be added!", "Add Game Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                MessageBox.Show("Home team and Guest team cannot be the same", "Update Game Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show("Error: " + ex.Message);
+                SoccerSchedule game = new SoccerSchedule(newId, date, hometeam, homescore, visitorteam, visitorscore);
+
+                try
+                {
+                    int result = db.addGame(game); // Save game
+
+                    if (result > 0)
+                    {
+                        MessageBox.Show(hometeam + "vs" + visitorteam + " was added successfully!", "Add Game", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        clearGameEditFields();
+                        showAllGames();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Game cannot be added!", "Add Game Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error: " + ex.Message);
+                }
             }
         }
 
@@ -1449,41 +1456,46 @@ namespace FinalProject
                 int homescore = Convert.ToInt32(nudHomeScore.Value);
                 string visitorteam = cbVisitorTeam.Text;
                 int visitorscore = Convert.ToInt32(nudVisitorScore.Value);
-
-
-                // Verify if game exist
-                if (db.getById(id) != null)
+                if (hometeam == visitorteam)
                 {
-
-                    SoccerSchedule game = new SoccerSchedule(id, date, hometeam, homescore, visitorteam, visitorscore);
-
-
-                    try
-                    {
-                        int result = db.updateTeam(game, id); // Save Game
-
-                        if (result > 0)
-                        {
-                            MessageBox.Show("Game was successfully updated!", "Update Game", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            clearGameEditFields();
-                            showAllGames();
-                        }
-                        else
-                        {
-                            MessageBox.Show("Game cannot be updated!", "Update Game Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Error: " + ex.Message);
-                    }
+                    MessageBox.Show("Home team and Guest team cannot be the same", "Update Game Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-
-
-
-                else // If game doesn't exist
+                else
                 {
-                    MessageBox.Show("Please, select Game from Grid View", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    // Verify if game exist
+                    if (db.getById(id) != null)
+                    {
+
+                        SoccerSchedule game = new SoccerSchedule(id, date, hometeam, homescore, visitorteam, visitorscore);
+
+
+                        try
+                        {
+                            int result = db.updateTeam(game, id); // Save Game
+
+                            if (result > 0)
+                            {
+                                MessageBox.Show("Game was successfully updated!", "Update Game", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                clearGameEditFields();
+                                showAllGames();
+                            }
+                            else
+                            {
+                                MessageBox.Show("Game cannot be updated!", "Update Game Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("Error: " + ex.Message);
+                        }
+                    }
+
+
+
+                    else // If game doesn't exist
+                    {
+                        MessageBox.Show("Please, select Game from Grid View", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
             }
         }
