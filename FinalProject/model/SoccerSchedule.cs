@@ -14,12 +14,13 @@ namespace FinalProject.model
         public int HomeScore { get; set; }
         public string VisitorTeam { get; set; }
         public int VisitorScore { get; set; }
+        public int Points { get; set; }
 
         public SoccerSchedule()
         {
 
         }
-        public SoccerSchedule(int id,string date, string hometeam, int homescore, string visitorteam, int visitorscore)
+        public SoccerSchedule(int id,string date, string hometeam, int homescore, string visitorteam, int visitorscore,int points)
         {
             Id = id;
             Date = date;
@@ -27,6 +28,7 @@ namespace FinalProject.model
             HomeScore = homescore;
             VisitorTeam = visitorteam;
             VisitorScore = visitorscore;
+            Points = points;
         }
     }
 }

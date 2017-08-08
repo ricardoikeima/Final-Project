@@ -19,6 +19,7 @@ namespace FinalProject
         DataTable teams;
         DataTable players;
         DataTable games;
+        DataTable ranking;
 
         public Form1()
         {
@@ -81,10 +82,11 @@ namespace FinalProject
 
                 showAllGames();
 
+                showRanking();
                 /////// standings tab /////////
 
                 // queries players table and updates dataGridViewPlayers
-                dataGridViewStandings.DataSource = teamsDB.getTeamsOrderedByRank();
+                
 
             }
             catch (SqlException sql)
@@ -1351,6 +1353,13 @@ namespace FinalProject
             }
         }
 
+        private void showRanking()
+        {
+            SoccerScheduleDB gamesDB = new SoccerScheduleDB();
+            ranking = gamesDB.getRanking();
+            dataGridViewStandings.DataSource = ranking;
+        }
+
         private void btnAddGame_Click(object sender, EventArgs e)
         {
             // Connect to database
@@ -1367,13 +1376,18 @@ namespace FinalProject
             int homescore = Convert.ToInt32(nudHomeScore.Value);
             string visitorteam = cbVisitorTeam.Text;
             int visitorscore = Convert.ToInt32(nudVisitorScore.Value);
+            int points = 3;
+            if (homescore == visitorscore)
+            {
+                points = 1;
+            }
             if (hometeam == visitorteam)
             {
                 MessageBox.Show("Home team and Guest team cannot be the same", "Update Game Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
-                SoccerSchedule game = new SoccerSchedule(newId, date, hometeam, homescore, visitorteam, visitorscore);
+                SoccerSchedule game = new SoccerSchedule(newId, date, hometeam, homescore, visitorteam, visitorscore,points);
 
                 try
                 {
@@ -1381,9 +1395,10 @@ namespace FinalProject
 
                     if (result > 0)
                     {
-                        MessageBox.Show(hometeam + "vs" + visitorteam + " was added successfully!", "Add Game", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show(hometeam + " vs " + visitorteam + " was added successfully!", "Add Game", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         clearGameEditFields();
                         showAllGames();
+                        showRanking();
                     }
                     else
                     {
@@ -1456,6 +1471,12 @@ namespace FinalProject
                 int homescore = Convert.ToInt32(nudHomeScore.Value);
                 string visitorteam = cbVisitorTeam.Text;
                 int visitorscore = Convert.ToInt32(nudVisitorScore.Value);
+                int points = 3;
+                if (homescore == visitorscore)
+                {
+                    points = 1;
+                }
+
                 if (hometeam == visitorteam)
                 {
                     MessageBox.Show("Home team and Guest team cannot be the same", "Update Game Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -1466,7 +1487,7 @@ namespace FinalProject
                     if (db.getById(id) != null)
                     {
 
-                        SoccerSchedule game = new SoccerSchedule(id, date, hometeam, homescore, visitorteam, visitorscore);
+                        SoccerSchedule game = new SoccerSchedule(id, date, hometeam, homescore, visitorteam, visitorscore,points);
 
 
                         try
@@ -1478,6 +1499,7 @@ namespace FinalProject
                                 MessageBox.Show("Game was successfully updated!", "Update Game", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                 clearGameEditFields();
                                 showAllGames();
+                                showRanking();
                             }
                             else
                             {
@@ -1515,7 +1537,12 @@ namespace FinalProject
                 int homescore = Convert.ToInt32(nudHomeScore.Value);
                 string visitorteam = cbVisitorTeam.Text;
                 int visitorscore = Convert.ToInt32(nudVisitorScore.Value);
-                SoccerSchedule game = new SoccerSchedule(id, date, hometeam, homescore, visitorteam, visitorscore);
+                int points = 3;
+                if (homescore == visitorscore)
+                {
+                    points = 1;
+                }
+                SoccerSchedule game = new SoccerSchedule(id, date, hometeam, homescore, visitorteam, visitorscore,points);
 
                 DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete selected Game? ", "Delete Team", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
                 if (dialogResult == DialogResult.No) // Do not delete!
@@ -1535,6 +1562,7 @@ namespace FinalProject
 
                             clearGameEditFields();
                             showAllGames();
+                            showRanking();
                         }
                         else
                         {

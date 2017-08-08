@@ -113,7 +113,10 @@
             this.cbTeam2 = new System.Windows.Forms.ComboBox();
             this.cbTeam1 = new System.Windows.Forms.ComboBox();
             this.schedule = new System.Windows.Forms.TabPage();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label25 = new System.Windows.Forms.Label();
             this.cbFilterGames = new System.Windows.Forms.ComboBox();
+            this.btnClearFilterGames = new System.Windows.Forms.Button();
             this.btnFilterGames = new System.Windows.Forms.Button();
             this.dataGridViewGames = new System.Windows.Forms.DataGridView();
             this.gbEditGame = new System.Windows.Forms.GroupBox();
@@ -151,9 +154,6 @@
             this.errorNumberTo = new System.Windows.Forms.ErrorProvider(this.components);
             this.errorFilterNumberFrom = new System.Windows.Forms.ErrorProvider(this.components);
             this.errorFilterNumberTo = new System.Windows.Forms.ErrorProvider(this.components);
-            this.btnClearFilterGames = new System.Windows.Forms.Button();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label25 = new System.Windows.Forms.Label();
             this.tabControl.SuspendLayout();
             this.Players.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPlayers)).BeginInit();
@@ -169,6 +169,7 @@
             this.gbViewTeam.SuspendLayout();
             this.trade.SuspendLayout();
             this.schedule.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewGames)).BeginInit();
             this.gbEditGame.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudVisitorScore)).BeginInit();
@@ -192,7 +193,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.errorNumberTo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorFilterNumberFrom)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorFilterNumberTo)).BeginInit();
-            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl
@@ -1220,6 +1220,28 @@
             this.schedule.Text = "Schedule";
             this.schedule.UseVisualStyleBackColor = true;
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.label25);
+            this.groupBox1.Controls.Add(this.cbFilterGames);
+            this.groupBox1.Controls.Add(this.btnClearFilterGames);
+            this.groupBox1.Controls.Add(this.btnFilterGames);
+            this.groupBox1.Location = new System.Drawing.Point(486, 33);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(442, 210);
+            this.groupBox1.TabIndex = 5;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Game Filter";
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(56, 84);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(48, 17);
+            this.label25.TabIndex = 5;
+            this.label25.Text = "Team:";
+            // 
             // cbFilterGames
             // 
             this.cbFilterGames.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -1228,6 +1250,16 @@
             this.cbFilterGames.Name = "cbFilterGames";
             this.cbFilterGames.Size = new System.Drawing.Size(171, 24);
             this.cbFilterGames.TabIndex = 3;
+            // 
+            // btnClearFilterGames
+            // 
+            this.btnClearFilterGames.Location = new System.Drawing.Point(221, 119);
+            this.btnClearFilterGames.Name = "btnClearFilterGames";
+            this.btnClearFilterGames.Size = new System.Drawing.Size(75, 23);
+            this.btnClearFilterGames.TabIndex = 4;
+            this.btnClearFilterGames.Text = "Clear";
+            this.btnClearFilterGames.UseVisualStyleBackColor = true;
+            this.btnClearFilterGames.Click += new System.EventHandler(this.btnClearFilterGames_Click);
             // 
             // btnFilterGames
             // 
@@ -1427,12 +1459,15 @@
             // 
             // dataGridViewStandings
             // 
+            this.dataGridViewStandings.AllowUserToAddRows = false;
+            this.dataGridViewStandings.AllowUserToDeleteRows = false;
             this.dataGridViewStandings.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewStandings.Location = new System.Drawing.Point(0, 0);
+            this.dataGridViewStandings.Location = new System.Drawing.Point(305, 21);
             this.dataGridViewStandings.Margin = new System.Windows.Forms.Padding(1);
             this.dataGridViewStandings.Name = "dataGridViewStandings";
+            this.dataGridViewStandings.ReadOnly = true;
             this.dataGridViewStandings.RowTemplate.Height = 40;
-            this.dataGridViewStandings.Size = new System.Drawing.Size(940, 326);
+            this.dataGridViewStandings.Size = new System.Drawing.Size(348, 436);
             this.dataGridViewStandings.TabIndex = 0;
             // 
             // playersBindingSource
@@ -1511,38 +1546,6 @@
             // 
             this.errorFilterNumberTo.ContainerControl = this;
             // 
-            // btnClearFilterGames
-            // 
-            this.btnClearFilterGames.Location = new System.Drawing.Point(221, 119);
-            this.btnClearFilterGames.Name = "btnClearFilterGames";
-            this.btnClearFilterGames.Size = new System.Drawing.Size(75, 23);
-            this.btnClearFilterGames.TabIndex = 4;
-            this.btnClearFilterGames.Text = "Clear";
-            this.btnClearFilterGames.UseVisualStyleBackColor = true;
-            this.btnClearFilterGames.Click += new System.EventHandler(this.btnClearFilterGames_Click);
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.label25);
-            this.groupBox1.Controls.Add(this.cbFilterGames);
-            this.groupBox1.Controls.Add(this.btnClearFilterGames);
-            this.groupBox1.Controls.Add(this.btnFilterGames);
-            this.groupBox1.Location = new System.Drawing.Point(486, 33);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(442, 210);
-            this.groupBox1.TabIndex = 5;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Game Filter";
-            // 
-            // label25
-            // 
-            this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(56, 84);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(48, 17);
-            this.label25.TabIndex = 5;
-            this.label25.Text = "Team:";
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1577,6 +1580,8 @@
             this.gbViewTeam.PerformLayout();
             this.trade.ResumeLayout(false);
             this.schedule.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewGames)).EndInit();
             this.gbEditGame.ResumeLayout(false);
             this.gbEditGame.PerformLayout();
@@ -1601,8 +1606,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.errorNumberTo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorFilterNumberFrom)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorFilterNumberTo)).EndInit();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
 
         }
