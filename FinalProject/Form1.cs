@@ -1611,9 +1611,6 @@ namespace FinalProject
             clearGameEditFields();
             showAllGames();
         }
-
-
-
     }
         
         
